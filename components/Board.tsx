@@ -1,6 +1,13 @@
+"use client";
+
+import { useEffect } from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 export const Board = () => {
+  useEffect(() => {
+    // getBoard()
+  }, []);
+
   return (
     <div>
       <DragDropContext>
