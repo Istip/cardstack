@@ -2,8 +2,11 @@
 
 import { MagnifyingGlassIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import Logo from "./Logo";
+import { useBoardStore } from "@/store/BoardStore";
 
 function Header() {
+  const { searchString, setSearchString } = useBoardStore((state) => state);
+
   return (
     <header>
       <div className="w-full mx-auto">
@@ -21,6 +24,8 @@ function Header() {
             <form className="bg-white flex items-center space-x-2 rounded-md p-2 border shadow-md  flex-1 md:flex-initial">
               <MagnifyingGlassIcon className="h-6 w-6 text-gray-500" />
               <input
+                value={searchString}
+                onChange={(e) => setSearchString(e.target.value)}
                 type="text"
                 placeholder="Search"
                 className="flex-1 outline-none text-sm"
