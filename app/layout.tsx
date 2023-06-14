@@ -1,7 +1,7 @@
 import "./globals.css";
-import { Manrope } from "next/font/google";
+import { Inter } from "next/font/google";
 
-const manrope = Manrope({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "CardStack",
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${manrope.className} bg-[#f5f6f8]`}>{children}</body>
+      <body className={`${inter.className} bg-[#f5f6f8]`}>{children}</body>
     </html>
   );
 }
