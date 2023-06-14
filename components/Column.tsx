@@ -9,9 +9,9 @@ type Props = {
 };
 
 const idToColumnText: { [key in TypedColumn]: string } = {
-  todo: "TO DO",
-  inprogress: "IN PROGRESS",
-  done: "DONE",
+  todo: "To Do",
+  inprogress: "In Progress",
+  done: "Done",
 };
 
 function Column({ id, todos, index }: Props) {
@@ -33,7 +33,7 @@ function Column({ id, todos, index }: Props) {
                   snapshot.isDraggingOver ? "bg-sky-200/50" : "bg-white/50"
                 }`}
               >
-                <h2 className="flex justify-between items-center font-bold text-xl">
+                <h2 className="flex justify-between items-center font-bold text-lg mb-2">
                   {idToColumnText[id]}
                   <span className="flex items-center text-white bg-sky-400 rounded-full py-1 px-2 text-sm">
                     {todos.length}
