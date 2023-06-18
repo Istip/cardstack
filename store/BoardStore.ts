@@ -12,6 +12,8 @@ interface BoardState {
   deleteTask: (taskIndex: number, todoId: Todo, id: TypedColumn) => void;
   newTaskInput: string;
   setNewTaskInput: (input: string) => void;
+  taskType: TypedColumn;
+  setTaskType: (columnId: TypedColumn) => void;
 }
 
 export const useBoardStore = create<BoardState>((set, get) => ({
@@ -61,4 +63,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
   newTaskInput: "",
   setNewTaskInput: (input: string) => set({ newTaskInput: input }),
+
+  taskType: "todo",
+  setTaskType: (columnId: TypedColumn) => set({ taskType: columnId }),
 }));
