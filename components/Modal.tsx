@@ -10,15 +10,30 @@ import { PhotoIcon } from "@heroicons/react/24/solid";
 
 function Modal() {
   const { isOpen, closeModal } = useModalStore((state) => state);
-  const { newTaskInput, setNewTaskInput, setImage, image } = useBoardStore(
-    (state) => state
-  );
+  const { newTaskInput, setNewTaskInput, setImage, image, addTask, taskType } =
+    useBoardStore((state) => state);
 
   const imagePickerRef = useRef<HTMLInputElement>(null);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!newTaskInput) return;
+
+    addTask(newTaskInput, taskType, image);
+
+    setImage(null);
+    closeModal();
+  };
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="form" onClose={closeModal} className="relative z-10">
+      <Dialog
+        as="form"
+        onSubmit={handleSubmit}
+        onClose={closeModal}
+        className="relative z-10"
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -92,6 +107,20 @@ function Modal() {
                       setImage(e.target.files![0]);
                     }}
                   />
+                </div>
+
+                <div className="mt-4 w-100">
+                  <button
+                    type="submit"
+                    disabled={!newTaskInput}
+                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2
+                    text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2
+                  focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:bg-gray-100 disabled:text-gray-300
+                    disabled:cursor-not-allowed
+                  "
+                  >
+                    Add Task
+                  </button>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
